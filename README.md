@@ -7,7 +7,7 @@ Setthanant Tetanonsakul 6115269
 
 Ha Ngoc Bao Linh 6138310
 
-Thanyaluck Arunrattnakul 6215301
+Thanyaluck Arunrattanakul 6215301
 
 
 ## Project Description
