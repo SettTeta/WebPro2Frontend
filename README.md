@@ -1,38 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Project Name
+STUDENT HUB
 
-## Getting Started
 
-First, run the development server:
+## Team members
+Setthanant Tetanonsakul 6115269
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Ha Ngoc Bao Linh 6138310
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Thanyaluck Arunrattnakul 6215301
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Project Description
+A web application that will provide students with a centralized platform to access and manage their academic information. Here are some features that will be included in our application:
+1. User accounts: Allow students to create accounts on the app so that they can access their own personalized information. 
+2. Course schedules: Provide students with a calendar view of their class schedules, including course names, instructors, meeting times, and locations. This could be integrated with your university's course catalog and registration system to ensure that the information is up-to-date.
+3. Grades and transcripts: Allow students to view their grades for each course, as well as their cumulative GPA. You may also want to provide access to official transcripts, which can be a useful resource when applying for jobs or further education.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Data Model
+1. Student - Contains student information
+2. Courses - Contains course information
+3. Registration - Ties Student_ID and Course_ID together
+4. Grade - Ties Registration_ID to a score which will dictate their grade
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Tech Stack
+ This project is built using the MERN stack but instead of using Express.js to handle to backend we used Next.js to develop both frontend and backend
+ 
+ 1. MongoDB
+ 
+ 2. Next.js
+ 
+ 3. Node.js
+ 
+ 4. React.js
