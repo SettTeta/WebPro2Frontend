@@ -54,6 +54,14 @@ export default function Home() {
                                         <input type="text" className="form-control" id="userId" aria-describedby="emailHelp" placeholder="Webdevlikeya" {...register("username", { required: true })}/>
                                     </div>
                                     <div className="mb-3">
+                                        <label htmlFor="firstName" className="form-label">First Name</label>
+                                        <input type="text" className="form-control" id="firstName" aria-describedby="emailHelp" placeholder="John" {...register("firstName", { required: true })}/>
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="lastName" className="form-label">Last Name</label>
+                                        <input type="text" className="form-control" id="lastName" aria-describedby="emailHelp" placeholder="Webdevlikeya" {...register("lastName", { required: true })}/>
+                                    </div>
+                                    <div className="mb-3">
                                         <label htmlFor="studentId" className="form-label">Student ID Number</label>
                                         <input type="text" className="form-control" id="studentId" aria-describedby="emailHelp" placeholder="6361278" {...register("studentId", { required: true })}/>
                                     </div>
