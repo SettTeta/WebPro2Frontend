@@ -36,7 +36,7 @@ export default function Home() {
               </Link>
             </li>
             <li className="nav-item pb-3 pt-3">
-              <Link href="/schedule.html" className="nav-link">
+              <Link href="/schedule" className="nav-link">
                 <div className="icon">
                   <Image src={scheduleImage} alt="schedule" style={{ maxHeight: "24px" }} />
                 </div>
@@ -46,7 +46,7 @@ export default function Home() {
               </Link>
             </li>
             <li className="nav-item pb-3 pt-3">
-              <Link href="/courses.html" className="nav-link">
+              <Link href="/courses" className="nav-link">
                 <div className="icon">
                   <Image src={courseImage} alt="course" style={{ maxHeight: "24px" }} />
                 </div>
@@ -56,7 +56,7 @@ export default function Home() {
               </Link>
             </li>
             <li className="nav-item pb-3 pt-3">
-              <Link href="/grade.html" className="nav-link">
+              <Link href="/grade" className="nav-link">
                 <div className="icon">
                   <Image src={gradeImage} alt="grade" style={{ maxHeight: "24px" }} />
                 </div>
@@ -83,7 +83,7 @@ export default function Home() {
         <div className="main" style={{ width: "100vw" }}>
           <header className="py-3 mb-3 border-bottom">
             <div className="container-fluid d-grid gap-3" style={{justifyContent:"end"}}>
-              <Link href="/profile.html" className="d-block link-dark text-decoration-none d-flex align-items-center">
+              <Link href="/profile" className="d-block link-dark text-decoration-none d-flex align-items-center">
                 <div className="avatar">
                   <Image src={avatarImage} alt="avatar" width="55" height="55" className="rounded-circle" />
                 </div>
