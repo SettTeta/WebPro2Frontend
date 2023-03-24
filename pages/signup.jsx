@@ -10,7 +10,7 @@ export default function Home() {
     const { register, handleSubmit } = useForm();
 
     const addStudent = async (data) => {
-        const response = await fetch('https://web-pro2-backend.vercel.app/api/hub/students', {
+        const response = await fetch('/api/hub/students', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
