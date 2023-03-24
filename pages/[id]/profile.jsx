@@ -11,7 +11,7 @@ import logoutImage from '/public/icon-logout.svg'
 import avatarImage from '/public/avatar.png'
 
 
-export default function Home() {
+export default function Home({student}) {
     return (
         <>
             <Head>
@@ -19,6 +19,7 @@ export default function Home() {
             </Head>
 
             <main className="d-flex flex-nowrap">
+
                 <div className="d-flex flex-column flex-shrink-0 p-3 bg-light" id="sidebar" style={{ height: "100vh" }}>
                     <Link href="/" className="align-items-center p-3 text-center link-dark text-decoration-none">
                         <Image src={logoImage} alt="logo" />
@@ -26,7 +27,7 @@ export default function Home() {
                     <hr />
                     <ul className="nav nav-pills flex-column mb-10">
                         <li className="nav-item pb-3 pt-3">
-                            <Link href="/" className="nav-link" aria-current="page">
+                            <Link href={`/${student._id}`} className="nav-link active" aria-current="page">
                                 <div className="icon">
                                     <Image src={homeImage} alt="home" style={{ maxHeight: "24px" }} />
                                 </div>
@@ -36,7 +37,7 @@ export default function Home() {
                             </Link>
                         </li>
                         <li className="nav-item pb-3 pt-3">
-                            <Link href="/schedule" className="nav-link">
+                            <Link href={`/${student._id}/schedule`} className="nav-link">
                                 <div className="icon">
                                     <Image src={scheduleImage} alt="schedule" style={{ maxHeight: "24px" }} />
                                 </div>
@@ -46,7 +47,7 @@ export default function Home() {
                             </Link>
                         </li>
                         <li className="nav-item pb-3 pt-3">
-                            <Link href="/courses" className="nav-link">
+                            <Link href={`/${student._id}/courses`} className="nav-link">
                                 <div className="icon">
                                     <Image src={courseImage} alt="course" style={{ maxHeight: "24px" }} />
                                 </div>
@@ -56,7 +57,7 @@ export default function Home() {
                             </Link>
                         </li>
                         <li className="nav-item pb-3 pt-3">
-                            <Link href="/grade" className="nav-link">
+                            <Link href={`/${student._id}/grade`} className="nav-link">
                                 <div className="icon">
                                     <Image src={gradeImage} alt="grade" style={{ maxHeight: "24px" }} />
                                 </div>
@@ -69,7 +70,7 @@ export default function Home() {
                     </ul>
                     <hr />
                     <div className="dropdown">
-                        <Link href="#" className="nav-link pb-3 pt-3" style={{ padding: "0 20px" }}>
+                        <Link href="/" className="nav-link pb-3 pt-3" style={{ padding: "0 20px" }}>
                             <div className="icon">
                                 <Image src={logoutImage} alt="logout" style={{ maxHeight: "24px" }} />
                             </div>
@@ -93,11 +94,11 @@ export default function Home() {
                                     <tbody>
                                         <tr>
                                             <td>Name</td>
-                                            <td><strong>Lion likerabbit</strong></td>
+                                            <td><strong>{student.firstName} {student.lastName}</strong></td>
                                         </tr>
                                         <tr>
                                             <td>Student ID</td>
-                                            <td><strong>6974103</strong></td>
+                                            <td><strong>{student.studentId}</strong></td>
                                         </tr>
                                         <tr>
                                             <td>Faculty</td>
@@ -126,4 +127,10 @@ export default function Home() {
 
         </>
     )
+}
+
+export async function getServerSideProps({ params }) {
+    const res = await fetch(`https://web-pro2-backend.vercel.app/api/hub/students/${params.id}`)
+    const student = await res.json()
+    return { props: { student } }
 }

@@ -11,7 +11,7 @@ import logoutImage from '/public/icon-logout.svg'
 import avatarImage from '/public/avatar.png'
 
 
-export default function Home({student}) {
+export default function Home({ student }) {
   return (
     <>
       <Head>
@@ -19,6 +19,7 @@ export default function Home({student}) {
       </Head>
 
       <main className="d-flex flex-nowrap">
+
         <div className="d-flex flex-column flex-shrink-0 p-3 bg-light" id="sidebar" style={{ height: "100vh" }}>
           <Link href="/" className="align-items-center p-3 text-center link-dark text-decoration-none">
             <Image src={logoImage} alt="logo" />
@@ -26,7 +27,7 @@ export default function Home({student}) {
           <hr />
           <ul className="nav nav-pills flex-column mb-10">
             <li className="nav-item pb-3 pt-3">
-              <Link href="/" className="nav-link active" aria-current="page">
+              <Link href={`/${student._id}`} className="nav-link active" aria-current="page">
                 <div className="icon">
                   <Image src={homeImage} alt="home" style={{ maxHeight: "24px" }} />
                 </div>
@@ -36,7 +37,7 @@ export default function Home({student}) {
               </Link>
             </li>
             <li className="nav-item pb-3 pt-3">
-              <Link href="/schedule" className="nav-link">
+              <Link href={`/${student._id}/schedule`} className="nav-link">
                 <div className="icon">
                   <Image src={scheduleImage} alt="schedule" style={{ maxHeight: "24px" }} />
                 </div>
@@ -46,7 +47,7 @@ export default function Home({student}) {
               </Link>
             </li>
             <li className="nav-item pb-3 pt-3">
-              <Link href="/courses" className="nav-link">
+              <Link href={`/${student._id}/courses`} className="nav-link">
                 <div className="icon">
                   <Image src={courseImage} alt="course" style={{ maxHeight: "24px" }} />
                 </div>
@@ -56,7 +57,7 @@ export default function Home({student}) {
               </Link>
             </li>
             <li className="nav-item pb-3 pt-3">
-              <Link href="/grade" className="nav-link">
+              <Link href={`/${student._id}/grade`} className="nav-link">
                 <div className="icon">
                   <Image src={gradeImage} alt="grade" style={{ maxHeight: "24px" }} />
                 </div>
@@ -84,7 +85,7 @@ export default function Home({student}) {
           <header className="py-3 mb-3 border-bottom">
             <div>Home</div>
             <div className="container-fluid d-grid gap-3" style={{ justifyContent: "end" }}>
-              <Link href="/profile" className="d-block link-dark text-decoration-none d-flex align-items-center">
+              <Link href={`/${student._id}/profile`} className="d-block link-dark text-decoration-none d-flex align-items-center">
                 <div className="avatar">
                   <Image src={avatarImage} alt="avatar" width="55" height="55" className="rounded-circle" />
                 </div>
