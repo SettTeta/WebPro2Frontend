@@ -1,5 +1,13 @@
 import Head from 'next/head'
-import logoutIcon from '../public/logo.png'
+import Image from 'next/image'
+
+import logoImage from '/public/logo.png'
+import homeImage from '/public/icon-home.png'
+import scheduleImage from '/public/icon-schedule.png'
+import courseImage from '/public/icon-course.png'
+import gradeImage from '/public/icon-grad.svg'
+import logoutImage from '/public/icon-logout.svg'
+import avatarImage from '/public/avatar.png'
 
 
 export default function Home() {
@@ -9,49 +17,49 @@ export default function Home() {
         <title>Student Hub</title>
       </Head>
 
-      <main class="d-flex flex-nowrap">
-        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" id="sidebar">
-          <a href="/" class="align-items-center p-3 text-center link-dark text-decoration-none">
-            <img src="images/logo.png"/>
+      <main className="d-flex flex-nowrap">
+        <div className="d-flex flex-column flex-shrink-0 p-3 bg-light" id="sidebar" style={{ height: "100vh" }}>
+          <a href="/" className="align-items-center p-3 text-center link-dark text-decoration-none">
+            <Image src={logoImage} alt="logo" />
           </a>
           <hr />
-          <ul class="nav nav-pills flex-column mb-10">
-            <li class="nav-item pb-3 pt-3">
-              <a href="/" class="nav-link active" aria-current="page">
-                <div class="icon">
-                  <img src="images/icon-home.svg" style={{maxHeight: "24px"}} />
+          <ul className="nav nav-pills flex-column mb-10">
+            <li className="nav-item pb-3 pt-3">
+              <a href="/" className="nav-link active" aria-current="page">
+                <div className="icon">
+                  <Image src={homeImage} alt="home" style={{ maxHeight: "24px" }} />
                 </div>
-                <div class="label">
+                <div className="label">
                   Home
                 </div>
               </a>
             </li>
-            <li class="nav-item pb-3 pt-3">
-              <a href="/schedule.html" class="nav-link">
-                <div class="icon">
-                  <img src="images/icon-schedule.svg" style={{maxHeight: "24px"}} />
+            <li className="nav-item pb-3 pt-3">
+              <a href="/schedule.html" className="nav-link">
+                <div className="icon">
+                  <Image src={scheduleImage} alt="schedule" style={{ maxHeight: "24px" }} />
                 </div>
-                <div class="label">
+                <div className="label">
                   Schedule
                 </div>
               </a>
             </li>
-            <li class="nav-item pb-3 pt-3">
-              <a href="/courses.html" class="nav-link">
-                <div class="icon">
-                  <img src="images/icon-course.svg" style={{maxHeight: "24px"}} />
+            <li className="nav-item pb-3 pt-3">
+              <a href="/courses.html" className="nav-link">
+                <div className="icon">
+                  <Image src={courseImage} alt="course" style={{ maxHeight: "24px" }} />
                 </div>
-                <div class="label">
+                <div className="label">
                   Courses
                 </div>
               </a>
             </li>
-            <li class="nav-item pb-3 pt-3">
-              <a href="/grade.html" class="nav-link">
-                <div class="icon">
-                  <img src="images/icon-grad.svg" style={{maxHeight: "24px"}} />
+            <li className="nav-item pb-3 pt-3">
+              <a href="/grade.html" className="nav-link">
+                <div className="icon">
+                  <Image src={gradeImage} alt="grade" style={{ maxHeight: "24px" }} />
                 </div>
-                <div class="label">
+                <div className="label">
                   Grade and <br />
                   Transcription
                 </div>
@@ -59,33 +67,30 @@ export default function Home() {
             </li>
           </ul>
           <hr />
-          <div class="dropdown">
-            <a href="#" class="nav-link pb-3 pt-3" style={{padding: "0 20px"}}>
-              <div class="icon">
-                <img src={logoutIcon} style={{maxHeight: "24px"}} />
+          <div className="dropdown">
+            <a href="#" className="nav-link pb-3 pt-3" style={{ padding: "0 20px" }}>
+              <div className="icon">
+                <Image src={logoutImage} alt="logout" style={{ maxHeight: "24px" }} />
               </div>
-              <div class="label">
+              <div className="label">
                 Log Out
               </div>
             </a>
           </div>
         </div>
-        <div class="main">
-          <header class="py-3 mb-3 border-bottom">
-            <div class="container-fluid d-grid gap-3 align-items-center">
-              <div class="d-flex align-items-center ml-auto">
-                <div class="flex-shrink-0 dropdown">
-                  <a href="/profile.html" class="d-block link-dark text-decoration-none d-flex align-items-center">
-                    <div class="avatar">
-                      <img src="images/avatar.png" alt="mdo" width="55" height="55" class="rounded-circle" />
-                    </div>
-                    <div class="information">
-                      <strong>Lion likerabbit</strong><br />
-                      <span>6974103</span>
-                    </div>
-                  </a>
+
+        <div className="main" style={{ width: "100vw" }}>
+          <header className="py-3 mb-3 border-bottom">
+            <div className="container-fluid d-grid gap-3" style={{justifyContent:"end"}}>
+              <a href="/profile.html" className="d-block link-dark text-decoration-none d-flex align-items-center">
+                <div className="avatar">
+                  <Image src={avatarImage} alt="avatar" width="55" height="55" className="rounded-circle" />
                 </div>
-              </div>
+                <div className="information">
+                  <strong>Lion likerabbit</strong><br />
+                  <span>6974103</span>
+                </div>
+              </a>
             </div>
           </header>
         </div>
