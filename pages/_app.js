@@ -1,6 +1,8 @@
 import { SSRProvider } from 'react-bootstrap';
 import { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/custom.css'
+
 
 
 function App({ Component, pageProps }) {

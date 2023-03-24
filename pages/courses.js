@@ -26,7 +26,7 @@ export default function Home() {
           <hr />
           <ul className="nav nav-pills flex-column mb-10">
             <li className="nav-item pb-3 pt-3">
-              <Link href="/" className="nav-link active" aria-current="page">
+              <Link href="/" className="nav-link " aria-current="page">
                 <div className="icon">
                   <Image src={homeImage} alt="home" style={{ maxHeight: "24px" }} />
                 </div>
@@ -46,7 +46,7 @@ export default function Home() {
               </Link>
             </li>
             <li className="nav-item pb-3 pt-3">
-              <Link href="/courses" className="nav-link">
+              <Link href="/courses" className="nav-link active">
                 <div className="icon">
                   <Image src={courseImage} alt="course" style={{ maxHeight: "24px" }} />
                 </div>
@@ -82,8 +82,8 @@ export default function Home() {
 
         <div className="main" style={{ width: "100vw" }}>
           <header className="py-3 mb-3 border-bottom">
-          <div>Home</div>
-            <div className="container-fluid d-grid gap-3" style={{justifyContent:"end"}}>
+            <div>Course Search</div>
+            <div className="container-fluid d-grid gap-3" style={{ justifyContent: "end" }}>
               <Link href="/profile" className="d-block link-dark text-decoration-none d-flex align-items-center">
                 <div className="avatar">
                   <Image src={avatarImage} alt="avatar" width="55" height="55" className="rounded-circle" />
@@ -97,6 +97,7 @@ export default function Home() {
           </header>
         </div>
       </main>
+
 
     </>
   )

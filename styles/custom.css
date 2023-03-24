@@ -1,0 +1,202 @@
+body{
+    font-family: 'DM Sans', sans-serif;
+}
+
+main {
+    height: 100vh;
+    max-height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+#sidebar{
+    width: 233.5px;
+    border-right: 2px;
+    border-color: rgba(181, 179, 179, 0.39);
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    background: transparent;
+    color: inherit;
+}
+
+.nav-link{
+    text-transform: capitalize;
+    color: #949496;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link .label{
+    margin-left: 15px;
+    text-align: center;
+    width: 60%;
+}
+
+.mb-10{
+    margin-bottom: 10rem;
+}
+
+.main{
+    width: 100%;
+}
+
+.ml-auto{
+    margin-left: auto;
+}
+
+.avatar{
+    padding-right: 15px;
+}
+
+.note{
+    max-width: 254px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 0px 1px #E4E4E4;
+    border-radius: 8px;
+    padding: 10px 20px;
+}
+
+.note ul{
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.note ul li{
+    position: relative;
+    padding: 2px 10px;
+}
+
+.note .instructor1{
+    width: 19px;
+    height: 19px;
+    background: #5272E9;
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    top: 5px;
+}
+
+.note .instructor2{
+    width: 19px;
+    height: 19px;
+    background: #24B0C9;
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    top: 5px;
+}
+
+#calendar table thead td{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 16px;
+    padding: 20px;
+    width: 120px;
+    color: #B1B1B1;
+    text-align: center;
+}
+
+#calendar table tbody tr{
+    border: 1px solid #DCDCDC;
+    border-right: 0;
+    border-left: 0;
+}
+
+#calendar table tbody tr td {
+    padding: 4px;
+    height: 50px;
+    text-align: center;
+    color: #B1B1B1;
+}
+
+#calendar .event{
+    background: #E9EFFF;
+    border-radius: 5px;
+    padding: 10px;
+    border-left: 10px solid #5272E9;
+    font-size: 11px;
+}
+
+.metadata{
+    margin-top: 10px;
+    padding: 10px 20px;
+}
+
+.metadata table tr td{
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    text-transform: capitalize;
+    color: #B1B1B1;
+    padding: 10px;
+}
+
+.metadata table tr td strong{
+    color: #333;
+}
+
+.box{
+    background: #F9F7F7;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 22px 7px;
+    margin-bottom: 20px;
+}
+
+.box .title{
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    text-transform: capitalize;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+
+.box .subject{
+    border-bottom: 1px solid #dfdfdf;
+    padding: 10px 0;
+}
+
+.form-login label{
+    font-size: 24px;
+}
+
+.form-login input[type=email]{
+    font-size: 24px;
+    height: 75px;
+    border-radius: 20px;
+}
+
+.form-login input[type=password]{
+    font-size: 24px;
+    height: 75px;
+    border-radius: 20px;
+}
+
+.form-login input[type=text]{
+    font-size: 24px;
+    height: 75px;
+    border-radius: 20px;
+}
+
+.btn-login{
+    border-radius: 20px;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+    color: #fff;
+    background: #5D5A88;
+    padding: 16px 82px;
+}
+
