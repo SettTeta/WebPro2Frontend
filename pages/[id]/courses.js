@@ -11,7 +11,7 @@ import logoutImage from '/public/icon-logout.svg'
 import avatarImage from '/public/avatar.png'
 
 
-export default function Home({ courses }) {
+export default function Home({ courses, students }) {
   return (
     <>
       <Head>
@@ -149,5 +149,9 @@ export default function Home({ courses }) {
 export async function getServerSideProps() {
   const cou = await fetch(`https://web-pro2-backend.vercel.app/api/hub/courses`)
   const courses = await cou.json()
-  return { props: { courses } }
+
+  const stu = await fetch(`https://web-pro2-backend.vercel.app/api/hub/students`)
+  const students = await stu.json()
+
+  return { props: { courses, students } }
 }
