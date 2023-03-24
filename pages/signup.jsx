@@ -12,6 +12,7 @@ export default function Home() {
     const addStudent = async (data) => {
         const response = await fetch('https://web-pro2-backend.vercel.app/api/hub/students', {
             method: "POST",
+            mode: "no-cors",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -25,8 +26,6 @@ export default function Home() {
             alert("New account created successfully")
             window.location.href = "/"
         }
-        console.log(result)
-        setData(JSON.stringify(data))
     }
 
     return (
