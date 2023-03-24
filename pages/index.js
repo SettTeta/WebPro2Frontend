@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import logoImage from '/public/logo.png'
 import homeImage from '/public/icon-home.png'
@@ -19,43 +20,43 @@ export default function Home() {
 
       <main className="d-flex flex-nowrap">
         <div className="d-flex flex-column flex-shrink-0 p-3 bg-light" id="sidebar" style={{ height: "100vh" }}>
-          <a href="/" className="align-items-center p-3 text-center link-dark text-decoration-none">
+          <Link href="/" className="align-items-center p-3 text-center link-dark text-decoration-none">
             <Image src={logoImage} alt="logo" />
-          </a>
+          </Link>
           <hr />
           <ul className="nav nav-pills flex-column mb-10">
             <li className="nav-item pb-3 pt-3">
-              <a href="/" className="nav-link active" aria-current="page">
+              <Link href="/" className="nav-link active" aria-current="page">
                 <div className="icon">
                   <Image src={homeImage} alt="home" style={{ maxHeight: "24px" }} />
                 </div>
                 <div className="label">
                   Home
                 </div>
-              </a>
+              </Link>
             </li>
             <li className="nav-item pb-3 pt-3">
-              <a href="/schedule.html" className="nav-link">
+              <Link href="/schedule.html" className="nav-link">
                 <div className="icon">
                   <Image src={scheduleImage} alt="schedule" style={{ maxHeight: "24px" }} />
                 </div>
                 <div className="label">
                   Schedule
                 </div>
-              </a>
+              </Link>
             </li>
             <li className="nav-item pb-3 pt-3">
-              <a href="/courses.html" className="nav-link">
+              <Link href="/courses.html" className="nav-link">
                 <div className="icon">
                   <Image src={courseImage} alt="course" style={{ maxHeight: "24px" }} />
                 </div>
                 <div className="label">
                   Courses
                 </div>
-              </a>
+              </Link>
             </li>
             <li className="nav-item pb-3 pt-3">
-              <a href="/grade.html" className="nav-link">
+              <Link href="/grade.html" className="nav-link">
                 <div className="icon">
                   <Image src={gradeImage} alt="grade" style={{ maxHeight: "24px" }} />
                 </div>
@@ -63,26 +64,26 @@ export default function Home() {
                   Grade and <br />
                   Transcription
                 </div>
-              </a>
+              </Link>
             </li>
           </ul>
           <hr />
           <div className="dropdown">
-            <a href="#" className="nav-link pb-3 pt-3" style={{ padding: "0 20px" }}>
+            <Link href="#" className="nav-link pb-3 pt-3" style={{ padding: "0 20px" }}>
               <div className="icon">
                 <Image src={logoutImage} alt="logout" style={{ maxHeight: "24px" }} />
               </div>
               <div className="label">
                 Log Out
               </div>
-            </a>
+            </Link>
           </div>
         </div>
 
         <div className="main" style={{ width: "100vw" }}>
           <header className="py-3 mb-3 border-bottom">
             <div className="container-fluid d-grid gap-3" style={{justifyContent:"end"}}>
-              <a href="/profile.html" className="d-block link-dark text-decoration-none d-flex align-items-center">
+              <Link href="/profile.html" className="d-block link-dark text-decoration-none d-flex align-items-center">
                 <div className="avatar">
                   <Image src={avatarImage} alt="avatar" width="55" height="55" className="rounded-circle" />
                 </div>
@@ -90,7 +91,7 @@ export default function Home() {
                   <strong>Lion likerabbit</strong><br />
                   <span>6974103</span>
                 </div>
-              </a>
+              </Link>
             </div>
           </header>
         </div>
