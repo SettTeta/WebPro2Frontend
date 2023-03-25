@@ -27,7 +27,7 @@ export default function Home({ student, registrations, grades, courses }) {
                     <hr />
                     <ul className="nav nav-pills flex-column mb-10">
                         <li className="nav-item pb-3 pt-3">
-                            <Link href={`/${student._id}`} className="nav-link active" aria-current="page">
+                            <Link href={`/${student._id}`} className="nav-link" aria-current="page">
                                 <div className="icon">
                                     <Image src={homeImage} alt="home" style={{ maxHeight: "24px" }} />
                                 </div>
@@ -57,7 +57,7 @@ export default function Home({ student, registrations, grades, courses }) {
                             </Link>
                         </li>
                         <li className="nav-item pb-3 pt-3">
-                            <Link href={`/${student._id}/grade`} className="nav-link">
+                            <Link href={`/${student._id}/grade`} className="nav-link active">
                                 <div className="icon">
                                     <Image src={gradeImage} alt="grade" style={{ maxHeight: "24px" }} />
                                 </div>
@@ -99,65 +99,22 @@ export default function Home({ student, registrations, grades, courses }) {
                         </div>
                     </header>
 
-                    <div className="container-fluid pt-3" >
+                    <div className="container-fluid pt-3 col-md-10" >
 
                         <div className='box'>
                             {registrations.map(reg => reg.studentID === student._id ? (
-                                <>
-                                    <div className="subject d-flex">
+                                    <div key={reg._id} className="subject d-flex">
                                         {courses.map(course => course._id === reg.courseID ? (
                                             <div className="title_subject align-items-center" key={course._id}>{course.code} <br /> {course.title} </div>
 
                                         ) : null)}
                                         {grades.map(gra => gra.regisID === reg._id ? (
                                             <div className="grade ml-auto" key={gra._id}>{gra.score}</div>
-                                        ) : null)}
+                                        ) : <div className="grade ml-auto" key={`no-${gra.regisID}`}>--</div>)}
                                     </div>
-                                </>
                             ) : null)}
                         </div>
-
-
-                        <div className='box'>
-                            {registrations.map(reg => reg.studentID === student._id ? (
-                                <div key={reg._id}>{reg.studentID} {reg.courseID}</div>
-                            ) : null)}
-                        </div>
-
-                        <div className="col-12 col-md-12 mt-5" >
-                            <div className="box">
-                                <div className="title">Semester 2/2020</div>
-                                <div className="subject d-flex">
-                                    <div className="title_subject align-items-center">
-                                        BG1400 <br />
-                                        BUSINESS LAW I
-                                    </div>
-                                    <div className="grade ml-auto">
-                                        A+
-                                    </div>
-                                </div>
-                                <div className="subject d-flex">
-                                    <div className="title_subject align-items-center">
-                                        BG1400 <br />
-                                        BUSINESS LAW I
-                                    </div>
-                                    <div className="grade ml-auto">
-                                        A+
-                                    </div>
-                                </div>
-                                <div className="subject d-flex">
-                                    <div className="title_subject align-items-center">
-                                        BG1400 <br />
-                                        BUSINESS LAW I
-                                    </div>
-                                    <div className="grade ml-auto">
-                                        A+
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
+                        
                     </div>
 
                 </div>
