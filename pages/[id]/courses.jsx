@@ -13,16 +13,22 @@ import avatarImage from '/public/avatar.png'
 
 
 export default function Home({ courses, student }) {
-  const [registeredCourses, setRegisteredCourses] = useState([]);
+  const [registrations, setRegistrations] = useState([]);
 
   useEffect(() => {
-    const fetchRegistrations = async () => {
-      const response = await fetch(`/api/hub/registrations/${student._id}`);
-      const data = await response.json();
-      setRegisteredCourses(data.map(registration => registration.courseID));
+    const fetchData = async () => {
+      const res = await fetch(`/api/hub/registrations?studentID=${student._id}`);
+      const data = await res.json();
+      setRegistrations(data);
     };
-    fetchRegistrations();
+    fetchData();
   }, [student._id]);
+
+  const isRegistered = (courseID) => {
+    return registrations.some(registration =>
+      registration.courseID === courseID && registration.studentID === student._id
+    );
+  }
 
   const registerCourse = async (data) => {
     const response = await fetch('/api/hub/registrations', {
@@ -37,8 +43,8 @@ export default function Home({ courses, student }) {
     if (result.error) {
       alert("Error: " + result.error)
     } else {
-      alert("New account created successfully")
-      window.location.reload(false);
+      alert("Registered successfully")
+      setRegistrations([...registrations, result]); // add new registration to state
     }
   }
 
@@ -146,7 +152,7 @@ export default function Home({ courses, student }) {
             <tbody>
               {
                 courses.map(course => {
-                  const isRegistered = registeredCourses.includes(course._id);
+                  // const isRegistered = registeredCourses.includes(course._id);
                   return (
                     <tr key={course._id}>
                       <td>
@@ -169,7 +175,7 @@ export default function Home({ courses, student }) {
                       </td>
                       <td>
                         <button
-                          disabled={isRegistered}
+                          disabled={isRegistered(course._id)}
                           onClick={() => {
                             const data = {
                               studentID: student._id,
@@ -178,7 +184,7 @@ export default function Home({ courses, student }) {
                             registerCourse(data);
                           }}
                         >
-                          {isRegistered ? 'Registered' : 'Add'}
+                          {isRegistered(course._id) ? 'Registered' : 'Add'}
                         </button>
                       </td>
                     </tr>
