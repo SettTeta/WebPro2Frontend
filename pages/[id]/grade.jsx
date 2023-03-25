@@ -11,7 +11,7 @@ import logoutImage from '/public/icon-logout.svg'
 import avatarImage from '/public/avatar.png'
 
 
-export default function Home({student}) {
+export default function Home({ student, registrations, grades, courses }) {
     return (
         <>
             <Head>
@@ -81,9 +81,12 @@ export default function Home({student}) {
                     </div>
                 </div>
 
-                <div className="main" style={{ width: "100vw" }}>
-                    <header className="py-3 mb-3 border-bottom">
-                        <div className="container-fluid d-grid gap-3" style={{ justifyContent: "end" }}>
+                <div className="main" style={{ width: "100vw" }} >
+                    <header className="py-3 mb-3 border-bottom" >
+                        <div className="container-fluid d-flex gap-3" style={{ justifyContent: "end" }} >
+                            <div className="col-md-9">
+                                <h3>Grades</h3>
+                            </div>
                             <Link href={`/${student._id}/profile`} className="d-block link-dark text-decoration-none d-flex align-items-center">
                                 <div className="avatar">
                                     <Image src={avatarImage} alt="avatar" width="55" height="55" className="rounded-circle" />
@@ -96,10 +99,32 @@ export default function Home({student}) {
                         </div>
                     </header>
 
-                    <div className="container-fluid pt-3">
-                        <h3>Grade and Transcription</h3>
+                    <div className="container-fluid pt-3" >
 
-                        <div className="col-12 col-md-4 mt-5">
+                        <div className='box'>
+                            {registrations.map(reg => reg.studentID === student._id ? (
+                                <>
+                                    <div className="subject d-flex">
+                                        {courses.map(course => course._id === reg.courseID ? (
+                                            <div className="title_subject align-items-center" key={course._id}>{course.code} <br /> {course.title} </div>
+
+                                        ) : null)}
+                                        {grades.map(gra => gra.regisID === reg._id ? (
+                                            <div className="grade ml-auto" key={gra._id}>{gra.score}</div>
+                                        ) : null)}
+                                    </div>
+                                </>
+                            ) : null)}
+                        </div>
+
+
+                        <div className='box'>
+                            {registrations.map(reg => reg.studentID === student._id ? (
+                                <div key={reg._id}>{reg.studentID} {reg.courseID}</div>
+                            ) : null)}
+                        </div>
+
+                        <div className="col-12 col-md-12 mt-5" >
                             <div className="box">
                                 <div className="title">Semester 2/2020</div>
                                 <div className="subject d-flex">
@@ -130,36 +155,8 @@ export default function Home({student}) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="box">
-                                <div className="title">Semester 2/2020</div>
-                                <div className="subject d-flex">
-                                    <div className="title_subject align-items-center">
-                                        BG1400 <br />
-                                        BUSINESS LAW I
-                                    </div>
-                                    <div className="grade ml-auto">
-                                        A+
-                                    </div>
-                                </div>
-                                <div className="subject d-flex">
-                                    <div className="title_subject align-items-center">
-                                        BG1400 <br />
-                                        BUSINESS LAW I
-                                    </div>
-                                    <div className="grade ml-auto">
-                                        A+
-                                    </div>
-                                </div>
-                                <div className="subject d-flex">
-                                    <div className="title_subject align-items-center">
-                                        BG1400 <br />
-                                        BUSINESS LAW I
-                                    </div>
-                                    <div className="grade ml-auto">
-                                        A+
-                                    </div>
-                                </div>
-                            </div>
+
+
                         </div>
                     </div>
 
@@ -173,5 +170,16 @@ export default function Home({student}) {
 export async function getServerSideProps({ params }) {
     const res = await fetch(`https://web-pro2-backend.vercel.app/api/hub/students/${params.id}`)
     const student = await res.json()
-    return { props: { student } }
+
+    const reg = await fetch(`https://web-pro2-backend.vercel.app/api/hub/registrations`)
+    const registrations = await reg.json()
+
+    const gra = await fetch(`https://web-pro2-backend.vercel.app/api/hub/grades`)
+    const grades = await gra.json()
+
+    const cou = await fetch(`https://web-pro2-backend.vercel.app/api/hub/courses`)
+    const courses = await cou.json()
+
+    return { props: { student, registrations, grades, courses } }
+
 }

@@ -152,6 +152,8 @@ export async function getServerSideProps({ params }) {
   const res = await fetch(`https://web-pro2-backend.vercel.app/api/hub/students/${params.id}`)
   const student = await res.json()
 
+
+  
   const cou = await fetch(`https://web-pro2-backend.vercel.app/api/hub/courses`)
   const courses = await cou.json()
 
