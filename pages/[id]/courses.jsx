@@ -14,6 +14,7 @@ import avatarImage from '/public/avatar.png'
 
 export default function Home({ courses, student }) {
   const [registrations, setRegistrations] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,6 +48,17 @@ export default function Home({ courses, student }) {
       setRegistrations([...registrations, result]); // add new registration to state
     }
   }
+
+  const filteredCourses = courses.filter((course) => {
+    const searchTermRegex = new RegExp(searchTerm, 'i');
+    return (
+      searchTermRegex.test(course.code) ||
+      searchTermRegex.test(course.title) ||
+      searchTermRegex.test(course.instructor) ||
+      searchTermRegex.test(course.date) ||
+      searchTermRegex.test(course.time)
+    );
+  });
 
   return (
     <>
@@ -136,6 +148,14 @@ export default function Home({ courses, student }) {
             </div>
           </header>
 
+          <div className="my-3">
+            <input
+              type="text"
+              placeholder="Search courses..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
 
           <table>
             <thead>
@@ -151,7 +171,7 @@ export default function Home({ courses, student }) {
             </thead>
             <tbody>
               {
-                courses.map(course => {
+                filteredCourses.map(course => {
                   // const isRegistered = registeredCourses.includes(course._id);
                   return (
                     <tr key={course._id}>
