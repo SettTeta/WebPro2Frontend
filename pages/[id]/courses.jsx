@@ -32,7 +32,7 @@ export default function Home({ courses, student }) {
   }
 
   const findRegisID = (courseID) => {
-    return registrations.find(registration => registration.courseID === courseID && student._id === registration.studentID)
+    return registrations.find(registration => registration.courseID === courseID && student._id === registration.studentID)._id
   }
 
   const registerCourse = async (data) => {
