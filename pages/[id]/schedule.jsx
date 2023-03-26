@@ -133,7 +133,7 @@ export default function Home({ student, courses, registrations }) {
                                                         )
                                                     ) {
                                                         return (
-                                                            <div className="event">
+                                                            <div className="event" key={course.code}>
                                                                 {course.code} <br />
                                                                 {course.instructor}
                                                             </div>
@@ -153,7 +153,7 @@ export default function Home({ student, courses, registrations }) {
                                                         )
                                                     ) {
                                                         return (
-                                                            <div className="event">
+                                                            <div className="event" key={course.code}>
                                                                 {course.code} <br />
                                                                 {course.instructor}
                                                             </div>
@@ -173,7 +173,7 @@ export default function Home({ student, courses, registrations }) {
                                                         )
                                                     ) {
                                                         return (
-                                                            <div className="event">
+                                                            <div className="event" key={course.code}>
                                                                 {course.code} <br />
                                                                 {course.instructor}
                                                             </div>
@@ -193,7 +193,7 @@ export default function Home({ student, courses, registrations }) {
                                                         )
                                                     ) {
                                                         return (
-                                                            <div className="event">
+                                                            <div className="event" key={course.code}>
                                                                 {course.code} <br />
                                                                 {course.instructor}
                                                             </div>
@@ -213,7 +213,7 @@ export default function Home({ student, courses, registrations }) {
                                                         )
                                                     ) {
                                                         return (
-                                                            <div className="event">
+                                                            <div className="event" key={course.code}>
                                                                 {course.code} <br />
                                                                 {course.instructor}
                                                             </div>
@@ -233,7 +233,7 @@ export default function Home({ student, courses, registrations }) {
                                                         )
                                                     ) {
                                                         return (
-                                                            <div className="event">
+                                                            <div className="event" key={course.code}>
                                                                 {course.code} <br />
                                                                 {course.instructor}
                                                             </div>
@@ -253,7 +253,7 @@ export default function Home({ student, courses, registrations }) {
                                                         )
                                                     ) {
                                                         return (
-                                                            <div className="event">
+                                                            <div className="event" key={course.code}>
                                                                 {course.code} <br />
                                                                 {course.instructor}
                                                             </div>
@@ -274,7 +274,7 @@ export default function Home({ student, courses, registrations }) {
 
                             {registrations.map(reg => reg.studentID === student._id ? (
                                 courses.map(course => course._id === reg.courseID ? (
-                                    <ul>
+                                    <ul key={reg._id}>
                                         <li>
                                             <span className="instructor1"></span>
                                             <p style={{ paddingLeft: "15px" }}>{course.title} - {course.code}</p>
