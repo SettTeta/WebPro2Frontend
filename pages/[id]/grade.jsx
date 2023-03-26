@@ -14,6 +14,44 @@ import avatarImage from '/public/avatar.png'
 
 export default function Home({ student, registrations, grades, courses }) {
 
+    const GRADE_MAP = {
+        'A+': 4.0,
+        'A': 4.0,
+        'A-': 3.7,
+        'B+': 3.3,
+        'B': 3.0,
+        'B-': 2.7,
+        'C+': 2.3,
+        'C': 2.0,
+        'C-': 1.7,
+        'D+': 1.3,
+        'D': 1.0,
+        'F': 0.0,
+    };
+
+    var totalGPA = 0
+    var totalCredits = 0
+
+
+    const calculateGpa = () => {
+        let totalCredits = 0;
+        let totalGpa = 0;
+
+        registrations.forEach(registration => {
+            const stu = registrations.find(regis => regis.studentID === student._id);
+            if(stu){
+            const grade = grades.find(grade => grade.regisID === registration._id)?.score;
+            if (grade) {
+                const credits = courses.find(course => course._id === registration.courseID)?.credit;
+                if (credits) {
+                    totalCredits += credits;
+                    totalGpa += GRADE_MAP[grade] * credits;
+                }
+            }
+    }});
+
+        return totalGpa / totalCredits;
+    }
 
     const confirmGrade = async (data) => {
         const response = await fetch('/api/hub/grades', {
@@ -163,12 +201,13 @@ export default function Home({ student, registrations, grades, courses }) {
                                         for (let i = 0; i < grades.length; i++) {
                                             const gra = grades[i];
                                             if (reg._id === gra.regisID) {
+                                                totalGPA+=GRADE_MAP[gra.score]
+                                                totalCredits+=1
                                                 return (
                                                     <div className="grade ml-auto" key={gra._id}>{gra.score}</div>
                                                 );
                                             }
                                         }
-                                        // If no grade is found, render a placeholder
                                         return (
                                             <div className="grade ml-auto" key={`no-${reg._id}`}>
                                                 {renderGrade(reg._id)}
@@ -179,6 +218,7 @@ export default function Home({ student, registrations, grades, courses }) {
                             ) : null)}
                         </div>
 
+                        <h4>GPA: {totalGPA.toFixed(2)/totalCredits}</h4>
 
                     </div>
 
