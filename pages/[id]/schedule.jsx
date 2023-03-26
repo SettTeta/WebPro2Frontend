@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect, useState } from 'react';
+import axios from 'axios'
 
 import logoImage from '/public/logo.png'
 import homeImage from '/public/icon-home.png'
@@ -12,6 +14,16 @@ import avatarImage from '/public/avatar.png'
 
 
 export default function Home({ student }) {
+    const [courses, setCourses] = useState([]);
+
+    useEffect(() => {
+        axios.get('https://web-pro2-backend.vercel.app/api/hub/courses')
+            .then(response => setCourses(response.data))
+            .catch(error => console.log(error))
+    }, [])
+
+
+
     return (
         <>
             <Head>
@@ -27,7 +39,7 @@ export default function Home({ student }) {
                     <hr />
                     <ul className="nav nav-pills flex-column mb-10">
                         <li className="nav-item pb-3 pt-3">
-                            <Link href={`/${student._id}`} className="nav-link active" aria-current="page">
+                            <Link href={`/${student._id}`} className="nav-link " aria-current="page">
                                 <div className="icon">
                                     <Image src={homeImage} alt="home" style={{ maxHeight: "24px" }} />
                                 </div>
@@ -37,7 +49,7 @@ export default function Home({ student }) {
                             </Link>
                         </li>
                         <li className="nav-item pb-3 pt-3">
-                            <Link href={`/${student._id}/schedule`} className="nav-link">
+                            <Link href={`/${student._id}/schedule`} className="nav-link active">
                                 <div className="icon">
                                     <Image src={scheduleImage} alt="schedule" style={{ maxHeight: "24px" }} />
                                 </div>
@@ -129,24 +141,7 @@ export default function Home({ student }) {
                                         <td></td>
                                         <td></td>
                                     </tr>
-                                    <tr>
-                                        <td>10:00</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>11:00</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+
                                     <tr>
                                         <td>12:00</td>
                                         <td></td>
@@ -165,24 +160,7 @@ export default function Home({ student }) {
                                         <td></td>
                                         <td></td>
                                     </tr>
-                                    <tr>
-                                        <td>14:00</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>15:00</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+
                                     <tr>
                                         <td>16:00</td>
                                         <td></td>
@@ -192,25 +170,67 @@ export default function Home({ student }) {
                                         <td></td>
                                         <td></td>
                                     </tr>
-                                    <tr>
-                                        <td>17:00</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>18:00</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+
                                 </tbody>
+
+                                <tbody>
+                                    {courses.map(course => (
+                                        <tr key={course._id}>
+                                            <td>{course.startTime}</td>
+                                            <td>{course.days.includes('Sun') && (
+                                                <div className="event">
+                                                    {course.title} <br />
+                                                    {course.location}
+                                                    <span>{course.startTime} - {course.endTime}</span>
+                                                </div>
+                                            )}</td>
+                                            <td>{course.days.includes('Mon') && (
+                                                <div className="event">
+                                                    {course.title} <br />
+                                                    {course.location}
+                                                    <span>{course.startTime} - {course.endTime}</span>
+                                                </div>
+                                            )}</td>
+                                            <td>{course.days.includes('Tue') && (
+                                                <div className="event">
+                                                    {course.title} <br />
+                                                    {course.location}
+                                                    <span>{course.startTime} - {course.endTime}</span>
+                                                </div>
+                                            )}</td>
+                                            <td>{course.days.includes('Wed') && (
+                                                <div className="event">
+                                                    {course.title} <br />
+                                                    {course.location}
+                                                    <span>{course.startTime} - {course.endTime}</span>
+                                                </div>
+                                            )}</td>
+                                            <td>{course.days.includes('Thu') && (
+                                                <div className="event">
+                                                    {course.title} <br />
+                                                    {course.location}
+                                                    <span>{course.startTime} - {course.endTime}</span>
+                                                </div>
+                                            )}</td>
+                                            <td>{course.days.includes('Fri') && (
+                                                <div className="event">
+                                                    {course.title} <br />
+                                                    {course.location}
+                                                    <span>{course.startTime} - {course.endTime}</span>
+                                                </div>
+                                            )}</td>
+                                            <td>{course.days.includes('Sat') && (
+                                                <div className="event">
+                                                    {course.title} <br />
+                                                    {course.location}
+                                                    <span>{course.startTime} - {course.endTime}</span>
+                                                </div>
+                                            )}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+
+
                             </table>
                         </div>
 
@@ -239,5 +259,12 @@ export default function Home({ student }) {
 export async function getServerSideProps({ params }) {
     const res = await fetch(`https://web-pro2-backend.vercel.app/api/hub/students/${params.id}`)
     const student = await res.json()
-    return { props: { student } }
+
+    const cou = await fetch(`https://web-pro2-backend.vercel.app/api/hub/courses`)
+    const courses = await cou.json()
+
+    const reg = await fetch(`https://web-pro2-backend.vercel.app/api/hub/registrations`)
+    const registrations = await reg.json()
+
+    return { props: { student, courses, registrations } }
 }

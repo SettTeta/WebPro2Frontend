@@ -47,27 +47,27 @@ export default function Home() {
                                 <form onSubmit={handleSubmit(addStudent)}>
                                     <div className="mb-3">
                                         <label htmlFor="email" className="form-label">Email</label>
-                                        <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="u6147255@Au.edu" {...register("email", { required: true })}/>
+                                        <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="u6147255@Au.edu" {...register("email", { required: true })} />
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="userId" className="form-label">User ID</label>
-                                        <input type="text" className="form-control" id="userId" aria-describedby="emailHelp" placeholder="Webdevlikeya" {...register("username", { required: true })}/>
+                                        <label htmlFor="userId" className="form-label">Faculty</label>
+                                        <input type="text" className="form-control" id="userId" aria-describedby="emailHelp" placeholder="Science and Technology" {...register("username", { required: true })} />
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="firstName" className="form-label">First Name</label>
-                                        <input type="text" className="form-control" id="firstName" aria-describedby="emailHelp" placeholder="John" {...register("firstName", { required: true })}/>
+                                        <input type="text" className="form-control" id="firstName" aria-describedby="emailHelp" placeholder="John" {...register("firstName", { required: true })} />
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="lastName" className="form-label">Last Name</label>
-                                        <input type="text" className="form-control" id="lastName" aria-describedby="emailHelp" placeholder="Webdevlikeya" {...register("lastName", { required: true })}/>
+                                        <input type="text" className="form-control" id="lastName" aria-describedby="emailHelp" placeholder="Doe" {...register("lastName", { required: true })} />
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="studentId" className="form-label">Student ID Number</label>
-                                        <input type="text" className="form-control" id="studentId" aria-describedby="emailHelp" placeholder="6361278" {...register("studentId", { required: true })}/>
+                                        <input type="text" className="form-control" id="studentId" aria-describedby="emailHelp" placeholder="6361278" {...register("studentId", { required: true })} />
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="password1" className="form-label">Password</label>
-                                        <input type="password" className="form-control" id="password1" placeholder="Password" {...register("password", { required: true })}/>
+                                        <input type="password" className="form-control" id="password1" placeholder="Password" {...register("password", { required: true })} />
                                     </div>
                                     <div className="text-center">
                                         <button type="submit" className="btn btn-primary btn-login">Sign Up</button><br />
@@ -78,6 +78,8 @@ export default function Home() {
                     </div>
                 </div>
             </main>
+
+            
 
         </>
     )

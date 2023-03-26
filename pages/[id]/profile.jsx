@@ -11,12 +11,45 @@ import logoutImage from '/public/icon-logout.svg'
 import avatarImage from '/public/avatar.png'
 
 
-export default function Home({student}) {
+export default function Home({ student, registrations, grades, courses }) {
+
+    const GRADE_MAP = {
+        'A+': 4.0,
+        'A': 4.0,
+        'A-': 3.7,
+        'B+': 3.3,
+        'B': 3.0,
+        'B-': 2.7,
+        'C+': 2.3,
+        'C': 2.0,
+        'C-': 1.7,
+        'D+': 1.3,
+        'D': 1.0,
+        'F': 0.0,
+    };
+
+    var totalGPA = 0
+    var totalCredits = 0
+
     return (
         <>
             <Head>
                 <title>Student Hub</title>
             </Head>
+
+            {registrations.map(reg => reg.studentID === student._id ? (
+                <div key={reg._id} className="subject d-flex">
+                    {(() => {
+                        for (let i = 0; i < grades.length; i++) {
+                            const gra = grades[i];
+                            if (reg._id === gra.regisID) {
+                                totalGPA += GRADE_MAP[gra.score]
+                                totalCredits += 3
+                            }
+                        }
+                    })()}
+                </div>
+            ) : null)}
 
             <main className="d-flex flex-nowrap">
 
@@ -85,11 +118,11 @@ export default function Home({student}) {
                     <div className="container-fluid pt-3">
                         <h3>User Profile</h3>
 
-                        <div className="col-12 col-md-4 mt-5">
+                        <div className="col-12 col-md-12 mt-5 ">
                             <div className="avatar-image text-center">
                                 <Image src={avatarImage} alt="mdo" width="200" height="200" className="rounded-circle" />
                             </div>
-                            <div className="metadata">
+                            <div className="metadata ">
                                 <table>
                                     <tbody>
                                         <tr>
@@ -102,19 +135,19 @@ export default function Home({student}) {
                                         </tr>
                                         <tr>
                                             <td>Faculty</td>
-                                            <td><strong>Science and Technology</strong></td>
+                                            <td><strong>{student.username}</strong></td>
                                         </tr>
                                         <tr>
-                                            <td>Department</td>
-                                            <td><strong>Computer Science</strong></td>
+                                            <td>Email</td>
+                                            <td><strong>{student.email}</strong></td>
                                         </tr>
                                         <tr>
                                             <td>GPA</td>
-                                            <td><strong>4.00</strong></td>
+                                            <td><strong>{totalGPA / (totalCredits / 3)}</strong></td>
                                         </tr>
                                         <tr>
                                             <td>Credits</td>
-                                            <td><strong>123</strong></td>
+                                            <td><strong>{totalCredits}</strong></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -132,5 +165,16 @@ export default function Home({student}) {
 export async function getServerSideProps({ params }) {
     const res = await fetch(`https://web-pro2-backend.vercel.app/api/hub/students/${params.id}`)
     const student = await res.json()
-    return { props: { student } }
+
+    const reg = await fetch(`https://web-pro2-backend.vercel.app/api/hub/registrations`)
+    const registrations = await reg.json()
+
+    const gra = await fetch(`https://web-pro2-backend.vercel.app/api/hub/grades`)
+    const grades = await gra.json()
+
+    const cou = await fetch(`https://web-pro2-backend.vercel.app/api/hub/courses`)
+    const courses = await cou.json()
+
+    return { props: { student, registrations, grades, courses } }
+
 }
