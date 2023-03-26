@@ -45,7 +45,19 @@ export default function Home({ courses, student }) {
       alert("Error: " + result.error)
     } else {
       alert("Registered successfully")
-      setRegistrations([...registrations, result]); // add new registration to state
+    }
+  }
+
+  function deleteRegistration(id) {
+    const confirmed = window.confirm("Are you sure you want to delete this course from your account?");
+    if (confirmed) {
+      fetch(`/api/hub/registration/${id}`, {
+        method: "DELETE"
+      })
+        .then(res => res.json())
+        .then(data => {
+          window.location.reload(false);
+        })
     }
   }
 
@@ -166,7 +178,8 @@ export default function Home({ courses, student }) {
                 <td>Date</td>
                 <td>Time</td>
                 <td>Credit</td>
-                <td>Add</td>
+                <td>Register</td>
+                <td>Unregister</td>
               </tr>
             </thead>
             <tbody>
@@ -207,6 +220,16 @@ export default function Home({ courses, student }) {
                           {isRegistered(course._id) ? 'Registered' : 'Add'}
                         </button>
                       </td>
+                      <td>
+                        <button
+                          disabled={!isRegistered(course._id)}
+                          onClick={() => {
+                            deleteRegistration(course._id);
+                          }}
+                        >
+                          {isRegistered(course._id) ? 'Delete' : '-'}
+                        </button>
+                      </td>
                     </tr>
                   )
                 })
@@ -226,8 +249,6 @@ export default function Home({ courses, student }) {
 export async function getServerSideProps({ params }) {
   const res = await fetch(`https://web-pro2-backend.vercel.app/api/hub/students/${params.id}`)
   const student = await res.json()
-
-
 
   const cou = await fetch(`https://web-pro2-backend.vercel.app/api/hub/courses`)
   const courses = await cou.json()
