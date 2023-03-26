@@ -55,7 +55,7 @@ export default function Home({ courses, student }) {
   function deleteRegistration(id) {
     const confirmed = window.confirm("Are you sure you want to delete this course from your account?");
     if (confirmed) {
-      fetch(`/api/hub/registration/${id}`, {
+      fetch(`/api/hub/registrations/${id}`, {
         method: "DELETE"
       })
         .then(res => res.json())
