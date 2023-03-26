@@ -12,7 +12,7 @@ export default async function handler(req, res) {
         const doc = await Registration.findOne({ _id: id })
         res.status(200).json(doc)
     } else if (req.method === 'DELETE') {
-        const deletedDoc = await Registration.deleteOne({ courseID: id })
+        const deletedDoc = await Registration.deleteOne({ _id: id })
         res.status(200).json(deletedDoc)
     } else if (req.method === 'PUT') {
         console.log('id',req.query.id)

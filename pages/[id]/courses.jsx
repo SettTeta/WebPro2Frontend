@@ -31,6 +31,10 @@ export default function Home({ courses, student }) {
     );
   }
 
+  const findRegisID = (courseID) => {
+    return registrations.find(registration => registration.courseID === courseID && student._id === registration.studentID)
+  }
+
   const registerCourse = async (data) => {
     const response = await fetch('/api/hub/registrations', {
       method: "POST",
@@ -224,7 +228,7 @@ export default function Home({ courses, student }) {
                         <button
                           disabled={!isRegistered(course._id)}
                           onClick={() => {
-                            deleteRegistration(course._id);
+                            deleteRegistration(findRegisID(course._id));
                           }}
                         >
                           {isRegistered(course._id) ? 'Delete' : '-'}
