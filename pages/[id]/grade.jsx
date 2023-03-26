@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Button } from 'react-bootstrap'
 
 import logoImage from '/public/logo.png'
 import homeImage from '/public/icon-home.png'
@@ -12,6 +13,56 @@ import avatarImage from '/public/avatar.png'
 
 
 export default function Home({ student, registrations, grades, courses }) {
+
+
+    const confirmGrade = async (data) => {
+        const response = await fetch('/api/hub/grades', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            referrerPolicy: "no-referrer",
+            body: JSON.stringify(data),
+        });
+        const result = await response.json();
+        if (result.error) {
+            alert("Error: " + result.error)
+        } else {
+            alert("Grade saved")
+            window.location.reload(false)
+        }
+    }
+
+    const handleScoreChange = (score, regisID) => {
+        const data = {
+            regisID: regisID,
+            score: score
+        }
+        console.log(score);
+        console.log(regisID);
+        confirmGrade(data)
+    }
+
+    const renderGrade = (regisID) => {
+        return (
+            <select onChange={(e) => handleScoreChange(e.target.value, regisID)}>
+                <option value="">Choose grade</option>
+                <option value="A+">A+</option>
+                <option value="A">A</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B">B</option>
+                <option value="B-">B-</option>
+                <option value="C+">C+</option>
+                <option value="C">C</option>
+                <option value="C-">C-</option>
+                <option value="D+">D+</option>
+                <option value="D">D</option>
+                <option value="F">F</option>
+            </select>
+        );
+    };
+
     return (
         <>
             <Head>
@@ -103,18 +154,32 @@ export default function Home({ student, registrations, grades, courses }) {
 
                         <div className='box'>
                             {registrations.map(reg => reg.studentID === student._id ? (
-                                    <div key={reg._id} className="subject d-flex">
-                                        {courses.map(course => course._id === reg.courseID ? (
-                                            <div className="title_subject align-items-center" key={course._id}>{course.code} <br /> {course.title} </div>
+                                <div key={reg._id} className="subject d-flex">
+                                    {courses.map(course => course._id === reg.courseID ? (
+                                        <div className="title_subject align-items-center" key={course._id}>{course.code} <br /> {course.title} </div>
+                                    ) : null)}
 
-                                        ) : null)}
-                                        {grades.map(gra => gra.regisID === reg._id ? (
-                                            <div className="grade ml-auto" key={gra._id}>{gra.score}</div>
-                                        ) : <div className="grade ml-auto" key={`no-${gra.regisID}`}>--</div>)}
-                                    </div>
+                                    {(() => {
+                                        for (let i = 0; i < grades.length; i++) {
+                                            const gra = grades[i];
+                                            if (reg._id === gra.regisID) {
+                                                return (
+                                                    <div className="grade ml-auto" key={gra._id}>{gra.score}</div>
+                                                );
+                                            }
+                                        }
+                                        // If no grade is found, render a placeholder
+                                        return (
+                                            <div className="grade ml-auto" key={`no-${reg._id}`}>
+                                                {renderGrade(reg._id)}
+                                            </div>
+                                        );
+                                    })()}
+                                </div>
                             ) : null)}
                         </div>
-                        
+
+
                     </div>
 
                 </div>
