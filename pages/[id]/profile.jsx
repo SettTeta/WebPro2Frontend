@@ -143,7 +143,7 @@ export default function Home({ student, registrations, grades, courses }) {
                                         </tr>
                                         <tr>
                                             <td>GPA</td>
-                                            <td><strong>{totalGPA / (totalCredits / 3)}</strong></td>
+                                            <td><strong>{(totalGPA / (totalCredits / 3)).toFixed(2)}</strong></td>
                                         </tr>
                                         <tr>
                                             <td>Credits</td>

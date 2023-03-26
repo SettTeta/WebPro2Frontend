@@ -13,7 +13,7 @@ import avatarImage from '/public/avatar.png'
 
 export default function Home({ student, courses, registrations }) {
     const timeSlots = ["9:00", "12:00", "13:00"]
-    
+
 
     return (
         <>
@@ -85,8 +85,12 @@ export default function Home({ student, courses, registrations }) {
                 </div>
 
                 <div className="main" style={{ width: "100vw" }}>
-                    <header className="py-3 mb-3 border-bottom">
-                        <div className="container-fluid d-grid gap-3" style={{ justifyContent: "end" }}>
+
+                    <header className="py-3 mb-3 border-bottom" >
+                        <div className="container-fluid d-flex gap-3" style={{ justifyContent: "end" }} >
+                            <div className="col-md-9">
+                                <h3>My Schedule</h3>
+                            </div>
                             <Link href={`/${student._id}/profile`} className="d-block link-dark text-decoration-none d-flex align-items-center">
                                 <div className="avatar">
                                     <Image src={avatarImage} alt="avatar" width="55" height="55" className="rounded-circle" />
@@ -100,7 +104,6 @@ export default function Home({ student, courses, registrations }) {
                     </header>
 
                     <div className="container-fluid pt-3">
-                        <h3>My Schedule</h3>
 
                         <div id='calendar'>
                             <table>

@@ -198,7 +198,7 @@ export default function Home({ student, registrations, grades, courses }) {
                             ) : null)}
                         </div>
 
-                        <h4>GPA: {totalGPA.toFixed(2)/totalCredits}</h4>
+                        <h4>GPA: {(totalGPA/totalCredits).toFixed(2)}</h4>
 
                     </div>
 
