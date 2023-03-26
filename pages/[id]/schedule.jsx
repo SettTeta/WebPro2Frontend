@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react';
-import axios from 'axios'
 
 import logoImage from '/public/logo.png'
 import homeImage from '/public/icon-home.png'
@@ -13,21 +11,12 @@ import logoutImage from '/public/icon-logout.svg'
 import avatarImage from '/public/avatar.png'
 
 
-export default function Home({ student }) {
-    const [courses, setCourses] = useState([]);
-
-    useEffect(() => {
-        axios.get('https://web-pro2-backend.vercel.app/api/hub/courses')
-            .then(response => setCourses(response.data))
-            .catch(error => console.log(error))
-    }, [])
-
-
+export default function Home({ student, courses, registrations }) {
 
     return (
         <>
             <Head>
-                <title>Student Hub</title>
+                <title>Student Hub - Schedule</title>
             </Head>
 
             <main className="d-flex flex-nowrap">
@@ -125,109 +114,59 @@ export default function Home({ student }) {
                                         <td>Sat</td>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>09:00</td>
-                                        <td></td>
-                                        <td>
-                                            <div className="event">
-                                                English Class <br />
-                                                BG1000 (SM 111)
-                                                <span>09:00 - 10:20</span>
-                                            </div>
-                                        </td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>12:00</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>13:00</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>16:00</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-
-                                </tbody>
 
                                 <tbody>
-                                    {courses.map(course => (
-                                        <tr key={course._id}>
-                                            <td>{course.startTime}</td>
-                                            <td>{course.days.includes('Sun') && (
-                                                <div className="event">
-                                                    {course.title} <br />
-                                                    {course.location}
-                                                    <span>{course.startTime} - {course.endTime}</span>
-                                                </div>
-                                            )}</td>
-                                            <td>{course.days.includes('Mon') && (
-                                                <div className="event">
-                                                    {course.title} <br />
-                                                    {course.location}
-                                                    <span>{course.startTime} - {course.endTime}</span>
-                                                </div>
-                                            )}</td>
-                                            <td>{course.days.includes('Tue') && (
-                                                <div className="event">
-                                                    {course.title} <br />
-                                                    {course.location}
-                                                    <span>{course.startTime} - {course.endTime}</span>
-                                                </div>
-                                            )}</td>
-                                            <td>{course.days.includes('Wed') && (
-                                                <div className="event">
-                                                    {course.title} <br />
-                                                    {course.location}
-                                                    <span>{course.startTime} - {course.endTime}</span>
-                                                </div>
-                                            )}</td>
-                                            <td>{course.days.includes('Thu') && (
-                                                <div className="event">
-                                                    {course.title} <br />
-                                                    {course.location}
-                                                    <span>{course.startTime} - {course.endTime}</span>
-                                                </div>
-                                            )}</td>
-                                            <td>{course.days.includes('Fri') && (
-                                                <div className="event">
-                                                    {course.title} <br />
-                                                    {course.location}
-                                                    <span>{course.startTime} - {course.endTime}</span>
-                                                </div>
-                                            )}</td>
-                                            <td>{course.days.includes('Sat') && (
-                                                <div className="event">
-                                                    {course.title} <br />
-                                                    {course.location}
-                                                    <span>{course.startTime} - {course.endTime}</span>
-                                                </div>
-                                            )}</td>
-                                        </tr>
-                                    ))}
+                                    {registrations.map(reg => reg.studentID === student._id ? (
+                                        courses.map(course => course._id === reg.courseID ? (
+                                            <tr key={course._id}>
+                                                <td>{course.time}</td>
+                                                <td>{course.date.includes('Sun') && (
+                                                    <div className="event">
+                                                        {course.code} <br />
+                                                        {course.instructor}
+                                                    </div>
+                                                )}</td>
+                                                <td>{course.date.includes('Mon') && (
+                                                    <div className="event">
+                                                        {course.code} <br />
+                                                        {course.instructor}
+                                                    </div>
+                                                )}</td>
+                                                <td>{course.date.includes('Tue') && (
+                                                    <div className="event">
+                                                        {course.code} <br />
+                                                        {course.instructor}
+                                                    </div>
+                                                )}</td>
+                                                <td>{course.date.includes('Wed') && (
+                                                    <div className="event">
+                                                        {course.code} <br />
+                                                        {course.instructor}
+                                                    </div>
+                                                )}</td>
+                                                <td>{course.date.includes('Thu') && (
+                                                    <div className="event">
+                                                        {course.code} <br />
+                                                        {course.instructor}
+                                                    </div>
+                                                )}</td>
+                                                <td>{course.date.includes('Fri') && (
+                                                    <div className="event">
+                                                        {course.code} <br />
+                                                        {course.instructor}
+                                                    </div>
+                                                )}</td>
+                                                <td>{course.date.includes('Sat') && (
+                                                    <div className="event">
+                                                        {course.code} <br />
+                                                        {course.instructor}
+                                                        <span>{course.time}</span>
+                                                    </div>
+                                                )}</td>
+                                            </tr>
+                                        ):null)
+                                    ): null)}
+                                    
                                 </tbody>
 
 

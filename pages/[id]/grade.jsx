@@ -33,26 +33,6 @@ export default function Home({ student, registrations, grades, courses }) {
     var totalCredits = 0
 
 
-    const calculateGpa = () => {
-        let totalCredits = 0;
-        let totalGpa = 0;
-
-        registrations.forEach(registration => {
-            const stu = registrations.find(regis => regis.studentID === student._id);
-            if(stu){
-            const grade = grades.find(grade => grade.regisID === registration._id)?.score;
-            if (grade) {
-                const credits = courses.find(course => course._id === registration.courseID)?.credit;
-                if (credits) {
-                    totalCredits += credits;
-                    totalGpa += GRADE_MAP[grade] * credits;
-                }
-            }
-    }});
-
-        return totalGpa / totalCredits;
-    }
-
     const confirmGrade = async (data) => {
         const response = await fetch('/api/hub/grades', {
             method: "POST",
@@ -104,7 +84,7 @@ export default function Home({ student, registrations, grades, courses }) {
     return (
         <>
             <Head>
-                <title>Student Hub</title>
+                <title>Student Hub - Grades</title>
             </Head>
 
             <main className="d-flex flex-nowrap">

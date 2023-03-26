@@ -63,7 +63,7 @@ export default function Home({ courses, student }) {
   return (
     <>
       <Head>
-        <title>Student Hub</title>
+        <title>Student Hub - Course</title>
       </Head>
 
       <main className="d-flex flex-nowrap">

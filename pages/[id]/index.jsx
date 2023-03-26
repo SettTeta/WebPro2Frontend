@@ -15,7 +15,7 @@ export default function Home({ student }) {
   return (
     <>
       <Head>
-        <title>Student Hub</title>
+        <title>Student Hub - Home</title>
       </Head>
 
       <main className="d-flex flex-nowrap">

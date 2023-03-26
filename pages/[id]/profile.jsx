@@ -34,7 +34,7 @@ export default function Home({ student, registrations, grades, courses }) {
     return (
         <>
             <Head>
-                <title>Student Hub</title>
+                <title>Student Hub - Profile</title>
             </Head>
 
             {registrations.map(reg => reg.studentID === student._id ? (

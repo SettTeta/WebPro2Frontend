@@ -26,4 +26,4 @@ const courseSchema = new Schema({
     credit: String,
 });
 
-const Course = models?.courses || model('course', courseSchema);
+const Course = models?.courses || model('courses', courseSchema);
