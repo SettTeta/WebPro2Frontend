@@ -12,6 +12,8 @@ import avatarImage from '/public/avatar.png'
 
 
 export default function Home({ student, courses, registrations }) {
+    const timeSlots = ["9:00", "12:00", "13:00"]
+    
 
     return (
         <>
@@ -116,57 +118,151 @@ export default function Home({ student, courses, registrations }) {
                                 </thead>
 
                                 <tbody>
-                                    {registrations.map(reg => reg.studentID === student._id ? (
-                                        courses.map(course => course._id === reg.courseID ? (
-                                            <tr key={course._id}>
-                                                <td>{course.time}</td>
-                                                <td>{course.date.includes('Sun') && (
-                                                    <div className="event">
-                                                        {course.code} <br />
-                                                        {course.instructor}
-                                                    </div>
-                                                )}</td>
-                                                <td>{course.date.includes('Mon') && (
-                                                    <div className="event">
-                                                        {course.code} <br />
-                                                        {course.instructor}
-                                                    </div>
-                                                )}</td>
-                                                <td>{course.date.includes('Tue') && (
-                                                    <div className="event">
-                                                        {course.code} <br />
-                                                        {course.instructor}
-                                                    </div>
-                                                )}</td>
-                                                <td>{course.date.includes('Wed') && (
-                                                    <div className="event">
-                                                        {course.code} <br />
-                                                        {course.instructor}
-                                                    </div>
-                                                )}</td>
-                                                <td>{course.date.includes('Thu') && (
-                                                    <div className="event">
-                                                        {course.code} <br />
-                                                        {course.instructor}
-                                                    </div>
-                                                )}</td>
-                                                <td>{course.date.includes('Fri') && (
-                                                    <div className="event">
-                                                        {course.code} <br />
-                                                        {course.instructor}
-                                                    </div>
-                                                )}</td>
-                                                <td>{course.date.includes('Sat') && (
-                                                    <div className="event">
-                                                        {course.code} <br />
-                                                        {course.instructor}
-                                                        <span>{course.time}</span>
-                                                    </div>
-                                                )}</td>
-                                            </tr>
-                                        ):null)
-                                    ): null)}
-                                    
+                                    {timeSlots.map((timeSlot) => (
+                                        <tr key={timeSlot}>
+                                            <td>{timeSlot}</td>
+                                            <td>
+                                                {courses.map((course) => {
+                                                    if (
+                                                        course.time === timeSlot &&
+                                                        course.date.includes("Sun") &&
+                                                        registrations.find(
+                                                            (reg) =>
+                                                                reg.courseID === course._id &&
+                                                                reg.studentID === student._id
+                                                        )
+                                                    ) {
+                                                        return (
+                                                            <div className="event">
+                                                                {course.code} <br />
+                                                                {course.instructor}
+                                                            </div>
+                                                        );
+                                                    }
+                                                })}
+                                            </td>
+                                            <td>
+                                                {courses.map((course) => {
+                                                    if (
+                                                        course.time === timeSlot &&
+                                                        course.date.includes("Mon") &&
+                                                        registrations.find(
+                                                            (reg) =>
+                                                                reg.courseID === course._id &&
+                                                                reg.studentID === student._id
+                                                        )
+                                                    ) {
+                                                        return (
+                                                            <div className="event">
+                                                                {course.code} <br />
+                                                                {course.instructor}
+                                                            </div>
+                                                        );
+                                                    }
+                                                })}
+                                            </td>
+                                            <td>
+                                                {courses.map((course) => {
+                                                    if (
+                                                        course.time === timeSlot &&
+                                                        course.date.includes("Tue") &&
+                                                        registrations.find(
+                                                            (reg) =>
+                                                                reg.courseID === course._id &&
+                                                                reg.studentID === student._id
+                                                        )
+                                                    ) {
+                                                        return (
+                                                            <div className="event">
+                                                                {course.code} <br />
+                                                                {course.instructor}
+                                                            </div>
+                                                        );
+                                                    }
+                                                })}
+                                            </td>
+                                            <td>
+                                                {courses.map((course) => {
+                                                    if (
+                                                        course.time === timeSlot &&
+                                                        course.date.includes("Wed") &&
+                                                        registrations.find(
+                                                            (reg) =>
+                                                                reg.courseID === course._id &&
+                                                                reg.studentID === student._id
+                                                        )
+                                                    ) {
+                                                        return (
+                                                            <div className="event">
+                                                                {course.code} <br />
+                                                                {course.instructor}
+                                                            </div>
+                                                        );
+                                                    }
+                                                })}
+                                            </td>
+                                            <td>
+                                                {courses.map((course) => {
+                                                    if (
+                                                        course.time === timeSlot &&
+                                                        course.date.includes("Thu") &&
+                                                        registrations.find(
+                                                            (reg) =>
+                                                                reg.courseID === course._id &&
+                                                                reg.studentID === student._id
+                                                        )
+                                                    ) {
+                                                        return (
+                                                            <div className="event">
+                                                                {course.code} <br />
+                                                                {course.instructor}
+                                                            </div>
+                                                        );
+                                                    }
+                                                })}
+                                            </td>
+                                            <td>
+                                                {courses.map((course) => {
+                                                    if (
+                                                        course.time === timeSlot &&
+                                                        course.date.includes("Fri") &&
+                                                        registrations.find(
+                                                            (reg) =>
+                                                                reg.courseID === course._id &&
+                                                                reg.studentID === student._id
+                                                        )
+                                                    ) {
+                                                        return (
+                                                            <div className="event">
+                                                                {course.code} <br />
+                                                                {course.instructor}
+                                                            </div>
+                                                        );
+                                                    }
+                                                })}
+                                            </td>
+                                            <td>
+                                                {courses.map((course) => {
+                                                    if (
+                                                        course.time === timeSlot &&
+                                                        course.date.includes("Sat") &&
+                                                        registrations.find(
+                                                            (reg) =>
+                                                                reg.courseID === course._id &&
+                                                                reg.studentID === student._id
+                                                        )
+                                                    ) {
+                                                        return (
+                                                            <div className="event">
+                                                                {course.code} <br />
+                                                                {course.instructor}
+                                                            </div>
+                                                        );
+                                                    }
+                                                })}
+                                            </td>
+                                        </tr>
+                                    ))}
                                 </tbody>
 
 
@@ -175,16 +271,18 @@ export default function Home({ student, courses, registrations }) {
 
                         <div className="note mt-3">
                             <h4>Instructor Details</h4>
-                            <ul>
-                                <li>
-                                    <span className="instructor1"></span>
-                                    <p style={{ paddingLeft: "15px" }}>Ajarn Dekd Weare</p>
-                                </li>
-                                <li>
-                                    <span className="instructor2"></span>
-                                    <p style={{ paddingLeft: "15px" }}>Ajarn Nok Thai</p>
-                                </li>
-                            </ul>
+
+                            {registrations.map(reg => reg.studentID === student._id ? (
+                                courses.map(course => course._id === reg.courseID ? (
+                                    <ul>
+                                        <li>
+                                            <span className="instructor1"></span>
+                                            <p style={{ paddingLeft: "15px" }}>{course.title} - {course.code}</p>
+                                            <p style={{ paddingLeft: "15px" }}>{course.instructor}</p>
+                                        </li>
+                                    </ul>
+                                ) : null)
+                            ) : null)}
                         </div>
                     </div>
 
