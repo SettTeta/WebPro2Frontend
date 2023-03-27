@@ -70,7 +70,7 @@ export default function Home() {
                                         <input type="password" className="form-control" id="password1" placeholder="Password" {...register("password", { required: true })} />
                                     </div>
                                     <div className="text-center">
-                                        <button type="submit" className="btn btn-primary btn-login">Sign Up</button><br />
+                                        <button type="submit" className="btn btn-primary btn-login my-button">Sign Up</button><br />
                                     </div>
                                 </form>
                             </div>

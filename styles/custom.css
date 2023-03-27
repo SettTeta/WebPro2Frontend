@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body{
     font-family: 'DM Sans', sans-serif;
 }
@@ -192,7 +199,7 @@ main {
 
 .btn-login{
     border-radius: 20px;
-    font-family: 'DM Sans';
+    font-family: 'Roboto Mono';
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -202,3 +209,7 @@ main {
     padding: 16px 82px;
 }
 
+.my-button {
+    font-family: 'Roboto', sans-serif;
+}
+  

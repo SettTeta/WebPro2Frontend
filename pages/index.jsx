@@ -52,7 +52,7 @@ export default function Home({ students }) {
                         <input type="password" className="form-control" id="password" required />
                       </div>
                       <div className="text-center">
-                        <button type="submit" className="btn btn-primary btn-login">Login</button><br />
+                        <button type="submit" className="btn btn-primary btn-login my-button">Login</button><br />
                         <Link href="/signup" style={{ color: "#6750A4", fontSize: "12px" }}>Dont have an account? Sign up.</Link>
                       </div>
                     </form>
