@@ -109,7 +109,7 @@ export default function Home({ student, registrations, courses }) {
           </header>
 
           <div className='box' style={{marginLeft:"20%", marginRight:"20%"}}>
-            <h3>Today's Class - {getDayOfWeek()}</h3>
+            <h3>Todays Class - {getDayOfWeek()}</h3>
             <div className="subject">
               {registrations.map(reg => reg.studentID === student._id ? (
                 courses.map(course => course._id === reg.courseID && course.date === getDayOfWeek() ? (

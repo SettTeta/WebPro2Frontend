@@ -39,7 +39,7 @@ export default function Home({ students }) {
                 <div className="col-12 col-md-3 " style={{ margin: "0 auto" }}>
                   <div className="form-login">
                     <div className="align-items-center p-3 text-center link-dark text-decoration-none">
-                      <Image src={logoImage} />
+                      <Image src={logoImage} alt="logo"/>
                     </div>
                     <h3 className="text-center mb-5" style={{ fontSize: "50px" }}>Login</h3>
                     <form onSubmit={handleLoginSubmit}>
