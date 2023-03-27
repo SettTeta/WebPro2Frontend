@@ -181,8 +181,8 @@ export default function Home({ student, registrations, grades, courses }) {
                                         for (let i = 0; i < grades.length; i++) {
                                             const gra = grades[i];
                                             if (reg._id === gra.regisID) {
-                                                totalGPA+=GRADE_MAP[gra.score]
-                                                totalCredits+=1
+                                                totalGPA += GRADE_MAP[gra.score]
+                                                totalCredits += 1
                                                 return (
                                                     <div className="grade ml-auto" key={gra._id}>{gra.score}</div>
                                                 );
@@ -198,7 +198,7 @@ export default function Home({ student, registrations, grades, courses }) {
                             ) : null)}
                         </div>
 
-                        <h4>GPA: {(totalGPA/totalCredits).toFixed(2)}</h4>
+                        <h4>GPA: {(totalGPA / totalCredits).toFixed(2)}</h4>
 
                     </div>
 
@@ -216,11 +216,11 @@ export async function getServerSideProps({ params }) {
     const reg = await fetch(`https://web-pro2-backend.vercel.app/api/hub/registrations`)
     const registrations = await reg.json()
 
-    const gra = await fetch(`https://web-pro2-backend.vercel.app/api/hub/grades`)
-    const grades = await gra.json()
-
     const cou = await fetch(`https://web-pro2-backend.vercel.app/api/hub/courses`)
     const courses = await cou.json()
+
+    const gra = await fetch(`https://web-pro2-backend.vercel.app/api/hub/grades`)
+    const grades = await gra.json()
 
     return { props: { student, registrations, grades, courses } }
 
