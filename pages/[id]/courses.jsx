@@ -32,25 +32,48 @@ export default function Home({ courses, student }) {
   }
 
   const findRegisID = (courseID) => {
-    return registrations.find(registration => registration.courseID === courseID && student._id === registration.studentID)._id
+    return registrations.find(registration => registration.courseID === courseID && student._id === registration.studentID)
   }
 
+
   const registerCourse = async (data) => {
-    const response = await fetch('/api/hub/registrations', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      referrerPolicy: "no-referrer",
-      body: JSON.stringify(data),
-    });
-    const result = await response.json();
-    if (result.error) {
-      alert("Error: " + result.error)
+    const { courseID, studentID } = data;
+    const course = courses.find(c => c._id === courseID);
+    const regis = registrations.find(r => r.courseID === courseID && r.studentID === studentID);
+
+    if (!course) {
+      alert("Invalid course ID");
+    } else if (regis) {
+      alert("You have already registered for this course");
     } else {
-      alert("Registered successfully")
+      const timeConflict = courses.some(c =>
+        c._id !== courseID &&
+        c.date === course.date &&
+        c.time === course.time
+      );
+      if (timeConflict) {
+        alert("There is a time conflict with your existing schedule");
+      } else {
+        const response = await fetch('/api/hub/registrations', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          referrerPolicy: "no-referrer",
+          body: JSON.stringify(data),
+        });
+        const result = await response.json();
+        if (result.error) {
+          alert("Error: " + result.error)
+        } else {
+          alert("Registered successfully")
+        }
+        window.location.reload(false);
+      }
     }
   }
+
+
 
   function deleteRegistration(id) {
     const confirmed = window.confirm("Are you sure you want to delete this course from your account?");
@@ -145,7 +168,7 @@ export default function Home({ courses, student }) {
           </div>
         </div>
 
-        <div className="main" style={{ width: "100vw" }}>
+        <div className="main container" style={{ width: "100vw" }}>
 
           <header className="py-3 mb-3 border-bottom" >
             <div className="container-fluid d-flex gap-3" style={{ justifyContent: "end" }} >
@@ -164,32 +187,32 @@ export default function Home({ courses, student }) {
             </div>
           </header>
 
-          <div className="my-3">
+          <div className="my-3 container">
             <input
+              className="form-control"
               type="text"
-              placeholder="Search courses..."
+              placeholder="Search for course code, titles, instructors, times, dates..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
 
-          <table>
+          <table className='container table table-striped table-hover'>
             <thead>
               <tr>
-                <td>Code</td>
-                <td>Title</td>
-                <td>Instructor</td>
-                <td>Date</td>
-                <td>Time</td>
-                <td>Credit</td>
-                <td>Register</td>
-                <td>Unregister</td>
+                <th>Code</th>
+                <th>Title</th>
+                <th>Instructor</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Credit</th>
+                <th>Register</th>
+                <th>Unregister</th>
               </tr>
             </thead>
             <tbody>
               {
                 filteredCourses.map(course => {
-                  // const isRegistered = registeredCourses.includes(course._id);
                   return (
                     <tr key={course._id}>
                       <td>
@@ -211,7 +234,7 @@ export default function Home({ courses, student }) {
                         {course.credit}
                       </td>
                       <td>
-                        <button
+                        <button type="button" className="btn btn-outline-primary"
                           disabled={isRegistered(course._id)}
                           onClick={() => {
                             const data = {
@@ -221,17 +244,17 @@ export default function Home({ courses, student }) {
                             registerCourse(data);
                           }}
                         >
-                          {isRegistered(course._id) ? 'Registered' : 'Add'}
+                          {isRegistered(course._id) ? '-----' : 'Add'}
                         </button>
                       </td>
                       <td>
-                        <button
+                        <button type="button" className="btn btn-outline-danger"
                           disabled={!isRegistered(course._id)}
                           onClick={() => {
-                            deleteRegistration(findRegisID(course._id));
+                            deleteRegistration(findRegisID(course._id)._id);
                           }}
                         >
-                          {isRegistered(course._id) ? 'Delete' : '-'}
+                          {isRegistered(course._id) ? 'Del' : '-----'}
                         </button>
                       </td>
                     </tr>
