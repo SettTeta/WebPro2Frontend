@@ -8,7 +8,7 @@ import scheduleImage from '/public/icon-schedule.png'
 import courseImage from '/public/icon-course.png'
 import gradeImage from '/public/icon-grad.svg'
 import logoutImage from '/public/icon-logout.svg'
-import avatarImage from '/public/avatar.png'
+import avatarImage from '/public/profileIcon.webp'
 
 
 export default function Home({ student, courses, registrations }) {
@@ -24,7 +24,7 @@ export default function Home({ student, courses, registrations }) {
             <main className="d-flex flex-nowrap">
 
                 <div className="d-flex flex-column flex-shrink-0 p-3 bg-light" id="sidebar" style={{ height: "100vh" }}>
-                    <Link href="/" className="align-items-center p-3 text-center link-dark text-decoration-none">
+                    <Link href={`/${student._id}`} className="align-items-center p-3 text-center link-dark text-decoration-none">
                         <Image src={logoImage} alt="logo" />
                     </Link>
                     <hr />
