@@ -116,7 +116,7 @@ export default function Home({ student, registrations, courses }) {
                   <div className="title_subject align-items-center mb-4" key={course._id}>
                     Code: {course.code} <br /> 
                     Title: {course.title}<br /> 
-                    Time: {course.date}-{course.time} <br /> 
+                    Time:{course.time} <br /> 
                     Instrcutor: {course.instructor}
                   </div>
                 ) : null)
