@@ -25,6 +25,9 @@ A web application that will provide students with a centralized platform to acce
 6. Grade and Transcription - Shows Courses code and name which Users can choose their grades (A+, A, A-,B+, B, B-, C+, C, C-, D+, D, F) to calculate their GPA.
 7. User Profile - Shows Name, Student ID, Faculty, Email, GPA, and Credits.
 
+## How to use:
+Before accessing the application, user needs to login (if the user still not have an account, they can sign up). After that, the home page will be shown up. There are 3 things user can check in the Student Hub are: Schedule, Course, Grade and Transcription. The user can go to Course to add what subject they want to or they can delete. Then they can check their study days in detail in the Schedule box. The user also can check their score in the Grade and Transcription. And finally they should click the button Log out before leaving the application.
+
 ## Data Model
 1. Student - Contains student information
 2. Courses - Contains course information
