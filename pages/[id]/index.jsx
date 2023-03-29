@@ -117,7 +117,7 @@ export default function Home({ student, registrations, courses }) {
                     Code: {course.code} <br /> 
                     Title: {course.title}<br /> 
                     Time:{course.time} <br /> 
-                    Instrcutor: {course.instructor}
+                    Instructor: {course.instructor}
                   </div>
                 ) : null)
               ) : null)}
