@@ -16,6 +16,9 @@ A web application that will provide students with a centralized platform to acce
 2. Course schedules: Provide students with a calendar view of their class schedules, including course names, instructors, meeting times, and locations. This could be integrated with your university's course catalog and registration system to ensure that the information is up-to-date.
 3. Grades and transcripts: Allow students to view their grades for each course, as well as their cumulative GPA. You may also want to provide access to official transcripts, which can be a useful resource when applying for jobs or further education.
 
+## How to use:
+Before accessing the application, user needs to login (if the user still not have an account, they can sign up). After that, the home page will be shown up. There are 3 things user can check in the Student Hub are: Schedule, Course, Grade and Transcription. The user can go to Course to add what subject they want to or they can delete. Then they can check their study days in detail in the Schedule box. The user also can check their score in the Grade and Transcription. And finally they should click the button Log out before leaving the application.
+
 ## Data Model
 1. Student - Contains student information
 2. Courses - Contains course information
